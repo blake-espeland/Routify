@@ -3,7 +3,8 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <meta charset="utf-8" />
-    <title>Waypoints in Directions</title>
+    <title>Routify</title>
+    <script src="./stylizing.js"></script>
     <style>
       #right-panel {
         font-family: "Roboto", "sans-serif";
@@ -31,14 +32,14 @@
       }
       #map {
         height: 100%;
-        float: left;
+        float: right;
         width: 70%;
         height: 100%;
       }
-      #right-panel {
-        margin: 20px;
-        border-width: 2px;
-        width: 20%;
+      #info-panel {
+        background-color: #333;
+        color: white;
+        width: 30%;
         height: 100%;
         float: left;
         text-align: left;
@@ -57,41 +58,32 @@
         color: white;
         width: 50%;
       }
+      #title{
+        color: white;
+        text-align: center;
+        width: 100%;
+        float: top;
+      }
+      .break{
+        columns: 1px;
+      }
+
     </style>
   </head>
   <body>
     <div id="map"></div>
-    <div id="right-panel">
+    <div id="info-panel">
+      <div id="title">
+        <h1>Routify</h1>
+      </div>
+      <hr class="break"/>
       <div>
         <b>Start:</b>
-        <select id="start">
-          <option value="Current Location">Current Location</option>
-          <option value="Halifax, NS">Halifax, NS</option>
-          <option value="Boston, MA">Boston, MA</option>
-          <option value="New York, NY">New York, NY</option>
-          <option value="Miami, FL">Miami, FL</option>
-        </select>
-        <br />
-        <b>Waypoints:</b> <br />
-        <i>(Ctrl+Click or Cmd+Click for multiple selection)</i> <br />
-        <select multiple id="waypoints">
-          <option value="montreal, quebec">Montreal, QBC</option>
-          <option value="toronto, ont">Toronto, ONT</option>
-          <option value="chicago, il">Chicago</option>
-          <option value="winnipeg, mb">Winnipeg</option>
-          <option value="fargo, nd">Fargo</option>
-          <option value="calgary, ab">Calgary</option>
-          <option value="spokane, wa">Spokane</option>
-        </select>
+        <input id="start" type="text" value="Current Location"/>
         <br />
         <b>End:</b>
-        <select id="end">
-          <option value="Current Location">Current Location</option>
-          <option value="Vancouver, BC">Vancouver, BC</option>
-          <option value="Seattle, WA">Seattle, WA</option>
-          <option value="San Francisco, CA">San Francisco, CA</option>
-          <option value="Los Angeles, CA">Los Angeles, CA</option>
-        </select>
+        <input id="end" type="text" value="Current Location"/>
+        <hr class="break"/>
         <div id="radios">
           <b>Workout:</b>
           <input
@@ -111,6 +103,8 @@
           />
           <label for="bike">Biking</label>
         </div>
+        <hr class="break"/>
+        <b>Distance:</b>
         <input type="number" id="distance" />
         <br />
         <input type="submit" id="submit" value="Build Trip" />
