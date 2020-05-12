@@ -2,11 +2,13 @@ var curpos;
 function initMap() {
   var directionsService = new google.maps.DirectionsService();
   var directionsRenderer = new google.maps.DirectionsRenderer();
+  const marker = new google.maps.Marker([(animation = "DROP")]);
+  infoWindow = new google.maps.InfoWindow();
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 6,
   });
   directionsRenderer.setMap(map);
-  infoWindow = new google.maps.InfoWindow();
+
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       function (position) {
@@ -14,7 +16,7 @@ function initMap() {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         };
-
+        marker.setPosition(curpos);
         infoWindow.setPosition(curpos);
         infoWindow.setContent("Current Location");
         infoWindow.open(map);
@@ -24,7 +26,7 @@ function initMap() {
             location: pos,
             radius: "",
           };
-          var service = new google.maps.places.PlacesService(map);
+          var service = new google.maps.places.PlacesService();
           service.nearbySearch(request, callback);
         };
         getAttractions(curpos);
